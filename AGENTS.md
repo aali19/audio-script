@@ -134,6 +134,7 @@ architecture rather than implemented functionality.
 |-- docs/
 |   `-- system-design.md
 |-- .dockerignore
+|-- .env.example
 |-- .gitignore
 |-- Dockerfile
 |-- pyproject.toml

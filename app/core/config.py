@@ -6,9 +6,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Runtime configuration loaded from AUDIO_* environment variables."""
+    """Runtime configuration loaded from .env and AUDIO_* environment variables."""
 
-    model_config = SettingsConfigDict(env_prefix="AUDIO_", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_prefix="AUDIO_",
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
     app_name: str = "Audio Transcription API"
     max_upload_bytes: int = Field(default=500 * 1024 * 1024, gt=0)

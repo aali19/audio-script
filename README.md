@@ -83,7 +83,22 @@ Errors use a stable envelope:
 
 ## Configuration
 
-All settings use the `AUDIO_` prefix.
+Copy the safe template for local development:
+
+```bash
+cp .env.example .env
+```
+
+PowerShell equivalent:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+The application reads `.env` from its working directory. All settings use the
+`AUDIO_` prefix, and process environment variables take precedence over values
+from `.env`. The real `.env` file is excluded from Git and Docker build contexts;
+only `.env.example` is committed and it must never contain secrets.
 
 | Variable | Default | Purpose |
 | --- | ---: | --- |
