@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audio-transcription-api"
+version = "1.0.0"
+description = "FastAPI audio transcription service using Faster-Whisper"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "av>=11,<19",
+  "fastapi>=0.115,<1.0",
+  "faster-whisper>=1.1,<2.0",
+  "pydantic-settings>=2.6,<3.0",
+  "python-multipart>=0.0.12,<1.0",
+  "uvicorn[standard]>=0.30,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.27,<1.0",
+  "pytest>=8.3,<9.0",
+  "pytest-asyncio>=0.24,<1.0",
+  "ruff>=0.8,<1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
