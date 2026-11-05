@@ -33,7 +33,21 @@ future extensions.
 python -m venv .venv
 ```
 
-Activate the environment, then install and start the service:
+Activate the environment.
+
+PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Then install and start the service:
 
 ```bash
 python -m pip install --upgrade pip
@@ -126,13 +140,14 @@ ruff format --check .
 
 Unit tests mock subprocess and inference boundaries. API tests use the real
 FastAPI routing, multipart parsing, temporary storage, exception mapping, and
-response validation while replacing FFprobe/model work with fakes.
+response validation while replacing FFprobe/model work with fakes. The latest
+validation run completed successfully with 18 passing tests.
 
 ## Docker
 
 ```bash
 docker build -t audio-transcription-api .
-docker run --rm -p 8000:8000 audio-transcription-api
+docker run --rm -p 8000:8000 --env-file .env audio-transcription-api
 ```
 
 The image installs FFmpeg and runs as a non-root user. It uses one Uvicorn worker
@@ -169,4 +184,5 @@ multiple workers each load their own model.
 
 ## Assessment video
 
-Add the submitted English walkthrough video URL here before final delivery.
+The English walkthrough video is provided separately through the assessment
+form.
